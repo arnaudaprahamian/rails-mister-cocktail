@@ -1,5 +1,5 @@
-<div>
-  <p> Add an ingredient to your Cocktail !</p>
+<div style="padding:5px;">
+  <p> Add an ingredient to this Cocktail !</p>
   <%= simple_form_for [@cocktail, @dose] do |f| %>
     <%= f.error_notification %>
     <%= f.association :ingredient %>

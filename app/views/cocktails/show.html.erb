@@ -1,21 +1,22 @@
 <div class="container">
-  <div class="profile text-center">
-    <div class="main">
+  <div class="profile">
+    <div class="main text-center">
       <div class="main-content">
         <h2><%= @cocktail.name.capitalize %><h2>
         <% if @cocktail.photo? %>
           <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
-        <% end %>        
+        <% end %>
+        <p><%= @cocktail.description %>
       </div>
     </div>
     <div class="description">
-      <div class="description-conten">
+      <div class="description-content">
         <h3>Liste des Ingredients:</h3>
         <ul>
           <% @cocktail.doses.each do |dose| %>
             <% if dose.persisted? %>
               <li>
-                <%= dose.description %> <%= dose.ingredient.name %>
+                <%= dose.description %> - <%= dose.ingredient.name %>
                 <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
               </li>
             <% end %>
@@ -24,7 +25,28 @@
       </div>
     </div>
   </div>
-
   <%= render "dose_form", cocktail: @cocktail, dose: @dose %>
+  <div class="container">
+    <div class="row">
+      <% @cocktail.reviews.each do |review| %>
+        <div class="col">
+          <% if review.persisted? %>
+            <div class="message">
+              <img class="avatar-large" src="https://avatarfiles.alphacoders.com/724/72490.jpg">
+              <div class="message-name">
+                <h3><%=review.author%></h3>
+                <p><%=review.created_at%></p>
+              </div>
+              <div class="message-body">
+                <p><strong><%= review.title %></strong></p>
+                <p><%= review.content %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render "review_form", cocktail: @cocktail, review: @review %>
   <%= link_to 'Back', cocktails_path %>
 </div>

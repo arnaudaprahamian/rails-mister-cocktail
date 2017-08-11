@@ -1,0 +1,10 @@
+<div style="padding:5px;">
+  <p> Add an review in this Cocktail !</p>
+  <%= simple_form_for [@cocktail, @review] do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :author %>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.button :submit, class:"btn btn-primary"%>
+  <% end %>
+</div>

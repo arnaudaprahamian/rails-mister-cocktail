@@ -8,6 +8,7 @@ class CocktailsController < ApplicationController
   def show
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.new
+    @review = Review.new
   end
 
   # GET /cocktails/new
@@ -29,7 +30,7 @@ class CocktailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cocktail_params
-    params.require(:cocktail).permit(:name, :photo)
+    params.require(:cocktail).permit(:name, :description, :photo)
   end
 
   def all_cocktails
