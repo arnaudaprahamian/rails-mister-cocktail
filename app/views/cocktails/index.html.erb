@@ -1,9 +1,16 @@
 <h1>La liste des cockatails</h1>
-<div>
-  <% @cocktails.each do |cocktail| %>
-    <p><%= cocktail.name.capitalize %></p>
-    <%= link_to "See details", cocktail, class: "btn btn-primary"%>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card">
+          <div class="card-description">
+            <h2><%= cocktail.name.capitalize %></h2>
+          </div>
+          <%= link_to "See details", cocktail, class:"card-link"%>
+        </div>
+      </div>
+    <% end %>
 </div>
 
 <%= link_to "Add a new Cocktail", new_cocktail_path, class: "btn btn-warning"%>

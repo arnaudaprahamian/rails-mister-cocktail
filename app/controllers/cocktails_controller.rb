@@ -1,4 +1,5 @@
 class CocktailsController < ApplicationController
+  before_action :all_cocktails
   # GET /cocktails
   def index
     @cocktails = Cocktail.all
@@ -30,5 +31,9 @@ class CocktailsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def cocktail_params
     params.require(:cocktail).permit(:name)
+  end
+
+  def all_cocktails
+    @cocktails = Cocktail.all
   end
 end
