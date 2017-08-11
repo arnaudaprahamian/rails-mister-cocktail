@@ -2,7 +2,6 @@ class CocktailsController < ApplicationController
   before_action :all_cocktails
   # GET /cocktails
   def index
-    @cocktails = Cocktail.all
   end
 
   # GET /cocktails/1
