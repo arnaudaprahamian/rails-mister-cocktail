@@ -1,23 +1,30 @@
 <div class="container">
-
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1>Liste des Ingredients:</h1>
-      <ul>
-        <% @cocktail.doses.each do |dose| %>
-          <% if dose.persisted? %>
-            <li>
-              <%= dose.description %> <%= dose.ingredient.name %>
-              <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
-            </li>
+  <div class="profile text-center">
+    <div class="main">
+      <div class="main-content">
+        <h2><%= @cocktail.name.capitalize %><h2>
+        <% if @cocktail.photo? %>
+          <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
+        <% end %>        
+      </div>
+    </div>
+    <div class="description">
+      <div class="description-conten">
+        <h3>Liste des Ingredients:</h3>
+        <ul>
+          <% @cocktail.doses.each do |dose| %>
+            <% if dose.persisted? %>
+              <li>
+                <%= dose.description %> <%= dose.ingredient.name %>
+                <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-      <p>
-        <%= render "dose_form", cocktail: @cocktail, dose: @dose %>
-      </p>
-      <%= link_to 'Back', cocktails_path %>
+        </ul>
+      </div>
     </div>
   </div>
 
+  <%= render "dose_form", cocktail: @cocktail, dose: @dose %>
+  <%= link_to 'Back', cocktails_path %>
 </div>

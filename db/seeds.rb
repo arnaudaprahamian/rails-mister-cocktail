@@ -12,11 +12,4 @@ ingredients["drinks"].each_with_index do |ingredient, index|
   puts "Ingredient #{index + 1} generé"
 end
 puts "Creation des ingredient terminer"
-
-puts "Creation des cocktails"
-5.times do
-  Cocktail.create(name:Faker::Beer.name)
-  puts "done"
-end
-puts "Creation des cockail terminer"
 puts "fin du seed"
