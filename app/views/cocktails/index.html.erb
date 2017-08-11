@@ -2,15 +2,27 @@
 <div class="container">
   <div class="row">
     <% @cocktails.each do |cocktail| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path cocktail.photo.path, height: 300, width: 400, crop: :fill %>')">
-          <div class="card-description">
-            <h2><%= cocktail.name.capitalize %></h2>
+      <% if cocktail.photo? %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('<%= cl_image_path cocktail.photo.path, height: 300, width: 400, crop: :fill %>')">
+            <div class="card-description">
+              <h2><%= cocktail.name.capitalize %></h2>
+            </div>
+            <%= link_to "See details", cocktail, class:"card-link"%>
           </div>
-          <%= link_to "See details", cocktail, class:"card-link"%>
         </div>
-      </div>
+      <%else%>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('http://res.cloudinary.com/lewagonbatch85/image/upload/c_fill,h_300,w_400/v1502437675/sample.jpg')">
+            <div class="card-description">
+              <h2><%= cocktail.name.capitalize %></h2>
+            </div>
+            <%= link_to "See details", cocktail, class:"card-link"%>
+          </div>
+        </div>
+      <%end%>
     <% end %>
 </div>
 
